@@ -1,0 +1,34 @@
+default: &default
+
+development:
+  project_id : bq-data
+  cv_database_id: cv_sandbox
+  cv_table_id: log_cv_pc
+
+  
+localdevelopment:
+  project_id : bq-data
+  cv_database_id: cv_sandbox
+  cv_table_id: log_cv_pc
+  
+test:
+  project_id : bq-data
+  cv_database_id: cv_sandbox
+  cv_table_id: log_cv_pc
+  
+sandbox:
+  project_id : bq-data
+  cv_database_id: cv_sandbox
+  cv_table_id: log_cv_pc
+  
+staging:
+  project_id : bq-data
+  cv_database_id: cv_staging
+  cv_table_id: log_cv_pc
+   
+production:
+  project_id : bq-datasw
+  cv_database_id: cv_production
+  cv_table_id: log_cv_pc
+  
+

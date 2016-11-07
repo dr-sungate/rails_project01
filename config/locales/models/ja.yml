@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    attributes:
+      application_owner:
+        application_id: アプリID
+        provider: 代理店
+        owner_id: オーナー
+      user:
+        name: 名前
+        email: メール
+        password: パスワード
+        password_confirmation: パスワード確認
+

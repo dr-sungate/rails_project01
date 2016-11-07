@@ -1,0 +1,55 @@
+    <%= javascript_include_tag 'oauth/application_owner' %>
+
+<%= form_for @add_application_owner, :url => {:action => 'create'} do |f| %>
+ <%= f.hidden_field :application_id, :value => @add_application_owner.application_id  %>
+  <% if @add_application_owner.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>入力内容に誤りがあります。</h4>
+      <ul class="list-unstyled">
+      <% @add_application_owner.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+      <%= f.label :provider %>
+      <%= select_tag 'provider', grouped_options_for_select(@providers.each_with_index.map {|users, type|
+        [
+          provider_type(type),
+          users.map {|user| [user.label, user.id, { data: { children_path: getlist_withoutselected_oauth_owner_path(user.id, @add_application_owner.application_id) } }] }
+        ]
+      }, ''), {class: 'selectpicker form-control',  include_blank: true } %>
+
+ <div class="form-group" data-except="futureshop">
+    <%= f.label :owner_id %>
+    <%= f.select :owner_id, [], {}, { class: 'form-control' }  %>
+</div>
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>
+
+ <table class="table table-striped table-vertical-middle">
+    <thead>
+      <tr>
+        <th>オーナーID</th>
+       <th>オーナー名</th>
+        <th>代理店</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    	<% if !@ownerlist.nil? %>
+      <% @ownerlist.each do |owner| %>
+          <tr>
+          <td><%= owner.name %></td>
+          <td><%= owner.label %></td>
+          <td><% if owner.role.provider.present? %><%=  owner.role.provider.label  %><% end %></td>
+          <td><%= link_to '削除', destroy_oauth_application_owners_path(@applicarioin_id, owner.id), method: :delete,
+                    data: { confirm: "「#{owner.label}」を解除します。よろしいですか？" },
+                    class: 'btn btn-default' %></td>
+           </tr>
+       <% end %>
+       <% end %>
+    </tbody>
+  </table>
+
+

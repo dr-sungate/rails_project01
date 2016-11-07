@@ -1,0 +1,25 @@
+default: &default
+  permit_addresses:
+    - 127.0.0.1
+    - 192.168.0.1
+
+development:
+  <<: *default
+  
+localdevelopment:
+  permit_addresses:
+    - 0.0.0.0
+  
+test:
+  <<: *default
+  
+sandbox:
+  <<: *default
+  
+staging:
+  <<: *default
+  
+production:
+  <<: *default
+  
+

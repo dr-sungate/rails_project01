@@ -1,0 +1,42 @@
+<%= form_for adminuser, form_options(adminuser) do |f| %>
+ <% if @adminuser.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>入力内容に誤りがあります。</h4>
+      <ul class="list-unstyled">
+      <% @adminuser.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%= content_tag :div, class: "form-group#{' has-error' if @adminuser.errors[:name].present?}" do %>
+     <%= f.label :name, class: 'col-sm-2 control-label'  %>
+     <div class="col-sm-10">
+    <%= f.text_field :name %>
+    </div>
+<% end %>
+<%= content_tag :div, class: "form-group#{' has-error' if @adminuser.errors[:email].present?}" do %>
+    <%= f.label :email, class: 'col-sm-2 control-label'  %>
+     <div class="col-sm-10">
+    <%= f.text_field :email %>
+    </div>
+ <% end %>
+<%= content_tag :div, class: "form-group#{' has-error' if @adminuser.errors[:password].present?}" do %>
+    <%= f.label :password, class: 'col-sm-2 control-label'  %>
+     <div class="col-sm-10">
+    <%= f.password_field :password %>
+    </div>
+<% end %>
+<%= content_tag :div, class: "form-group#{' has-error' if @adminuser.errors[:password_confirmation].present?}" do %>
+    <%= f.label :password_confirmation, class: 'col-sm-2 control-label'  %>
+     <div class="col-sm-10">
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+<% end %>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+    <%= f.submit %>
+    </div>
+  </div>
+  <% end %>

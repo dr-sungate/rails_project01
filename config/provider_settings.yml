@@ -1,0 +1,36 @@
+default: &default
+  direct_provider:
+    bill_on_date: 21
+    names:
+      - hhhhh
+  oem_provider:
+    bill_on_date: 1
+    names:
+      - xxxxx
+      - bbbbb
+      - uuuuu
+  agency_provider:
+    bill_on_date: 21
+    names:
+  futureshop_api_password: hggghgggg
+
+
+development:
+  <<: *default
+  
+localdevelopment:
+  <<: *default
+  
+test:
+  <<: *default
+  
+sandbox:
+  <<: *default
+  
+staging:
+  <<: *default
+  
+production:
+  <<: *default
+  
+

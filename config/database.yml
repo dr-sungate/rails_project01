@@ -1,0 +1,72 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV['MAIN_DATABASE_POOL'] || 5 %>
+  host: <%= ENV['MAIN_DATABASE_HOST'] || 'localhost' %>
+  username: <%= ENV['MAIN_DATABASE_USERNAME'] || 'root' %>
+  password: <%= ENV['MAIN_DATABASE_PASSWORD'] || '' %>
+  socket: <%= ENV['MAIN_DATABASE_SOCKET'] || '/var/run/mysqld/mysqld.sock' %>
+
+development:
+  <<: *default
+  database: db/development.sqlite3
+
+localdevelopment:
+  <<: *default
+  database: db/development.sqlite3
+
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: database_linkage_test
+
+test_main:
+  <<: *default
+  database: database_main_test
+
+production:
+  <<: *default
+  database: database_linkage
+  pool: <%= ENV['LINKAGE_DATABASE_POOL'] || 5 %>
+  host: <%= ENV['LINKAGE_DATABASE_HOST'] || 'localhost' %>
+  username: <%= ENV['LINKAGE_DATABASE_USERNAME'] || 'root' %>
+  password: <%= ENV['LINKAGE_DATABASE_PASSWORD'] || '' %>
+  socket: <%= ENV['LINKAGE_DATABASE_SOCKET'] || '/var/run/mysqld/mysqld.sock' %>
+
+production_main:
+  <<: *default
+  database: database_main
+
+staging:
+  <<: *default
+  database: database_linkage
+  pool: <%= ENV['LINKAGE_DATABASE_POOL'] || 5 %>
+  host: <%= ENV['LINKAGE_DATABASE_HOST'] || 'localhost' %>
+  username: <%= ENV['LINKAGE_DATABASE_USERNAME'] || 'root' %>
+  password: <%= ENV['LINKAGE_DATABASE_PASSWORD'] || '' %>
+  socket: <%= ENV['LINKAGE_DATABASE_SOCKET'] || '/var/run/mysqld/mysqld.sock' %>
+
+staging_main:
+  <<: *default
+  database: database_main
+ 
+
+localdevelopment:
+  <<: *default
+  database: database_linkage
+  host: <%= ENV['LINKAGE_DATABASE_HOST'] || 'localhost' %>
+
+localdevelopment_main:
+  <<: *default
+  database: database_main
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
+

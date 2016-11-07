@@ -1,0 +1,2 @@
+class ApirequestLog < ApplicationRecord
+end
